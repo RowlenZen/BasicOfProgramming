@@ -1,7 +1,7 @@
-#include <stdio.h>
-#include "libs/algorithms/array/array.h"
+#include "libs/data_structures/vector/vector.h"
 
 int main() {
-    printf("Hello, World!\n");
+    vector vector = createVector(5);
+    printVector(&vector);
     return 0;
 }
