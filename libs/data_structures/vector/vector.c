@@ -3,10 +3,12 @@
 #include "vector.h"
 #include "../../algorithms/array/array.h"
 
+void exitWithError(char message[]);
+
 void printVector(vector *vector) {
     outputArray_(vector->data, vector->capacity);
     printf("Size: %zu\n", vector->size);
-    printf("Capacity: %zu", vector->capacity);
+    printf("Capacity: %zu\n", vector->capacity);
 }
 
 vector createVector(size_t capacity) {
@@ -14,8 +16,7 @@ vector createVector(size_t capacity) {
     vector *vectorPtr = malloc(sizeof(vector));
 
     if (vectorPtr == NULL || data == NULL) {
-        fprintf(stderr, "bad alloc");
-        exit(1);
+        exitWithError("Bad alloc");
     }
 
     vectorPtr->data = data;
@@ -28,20 +29,18 @@ vector createVector(size_t capacity) {
 void reserve(vector *v, size_t newCapacity) {
     if (newCapacity == 0) {
         v->data = NULL;
-        return;
-    }
+    } else {
+        int *newData = realloc(v->data, sizeof(int) * newCapacity);
+        if (newData == NULL) {
+            exitWithError("Bad alloc");
+        }
 
-    int *newData = realloc(v->data, sizeof(int) * newCapacity);
-    if (newData == NULL) {
-        fprintf(stderr, "bad alloc");
-        exit(1);
+        v->data = newData;
     }
-
-    free(v->data);
-    v->data = newData;
 
     if (newCapacity < v->size)
         v->size = newCapacity;
+    v->capacity = newCapacity;
 }
 
 void clear(vector *v) {
@@ -54,4 +53,39 @@ void shrinkToFit(vector *v) {
 
 void deleteVector(vector *v) {
     free(v);
+}
+
+bool isEmpty(vector *v) {
+    return v->size == 0;
+}
+
+bool isFull(vector *v) {
+    return v->size == v->capacity;
+}
+
+int getVectorValue(vector *v, size_t i) {
+    return v->data[i];
+}
+
+void pushBack(vector *v, int x) {
+    size_t *vectorSize = &(v->size);
+    size_t vectorCapacity = v->capacity;
+    if (*vectorSize >= vectorCapacity) {
+        size_t newCapacity = vectorCapacity ? vectorCapacity * 2 : 1;
+        reserve(v, newCapacity);
+    }
+    v->data[*vectorSize] = x;
+    (*vectorSize)++;
+}
+
+void popBack(vector *v) {
+    if (v->size == 0) {
+        exitWithError("Error removing element cause vector is empty");
+    }
+    v->size--;
+}
+
+void exitWithError(char message[]) {
+    fprintf(stderr, "%s", message);
+    exit(1);
 }
