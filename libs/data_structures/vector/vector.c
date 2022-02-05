@@ -74,6 +74,7 @@ void pushBack(vector *v, int x) {
     size_t *vectorSize = &(v->size);
     size_t vectorCapacity = v->capacity;
     if (*vectorSize >= vectorCapacity) {
+        //vectorCapacity could be 0
         size_t newCapacity = vectorCapacity ? vectorCapacity * 2 : 1;
         reserve(v, newCapacity);
     }

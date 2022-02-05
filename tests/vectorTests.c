@@ -1,6 +1,15 @@
 #include <assert.h>
 #include "../libs/data_structures/vector/vector.h"
 
+void test_pushBack_emptyVectorWithNullData() {
+    vector v = createVector(5);
+    reserve(&v, 0); //here set v.data = NULL
+    pushBack(&v, 20);
+    assert(v.data[0] == 20);
+    assert(v.size == 1);
+    assert(v.capacity == 1);
+}
+
 void test_pushBack_emptyVector() {
     vector v = createVector(0); //создали пустой вектор
     pushBack(&v, 25);

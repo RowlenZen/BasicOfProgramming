@@ -6,13 +6,14 @@
 void test();
 
 int main() {
+    test();
     vector vector = createVector(5);
     printVector(&vector);
-    test();
     return 0;
 }
 
 void test() {
+    test_pushBack_emptyVectorWithNullData();
     test_pushBack_emptyVector();
     test_pushBack_fullVector();
     test_popBack_notEmptyVector();
