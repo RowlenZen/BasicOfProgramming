@@ -29,3 +29,33 @@ void test_popBack_notEmptyVector() {
     assert (v.size == 0);
     assert (v.capacity == 1);
 }
+
+void test_atVector_notEmptyVector() {
+    vector v = createVector(2);
+    pushBack(&v, 10);
+    pushBack(&v, 20);
+    pushBack(&v, 40);
+    assert(*atVector(&v, 1) == 20);
+}
+
+void test_atVector_requestToLastElement() {
+    vector v = createVector(2);
+    pushBack(&v, 10);
+    pushBack(&v, 30);
+    assert(*atVector(&v, 1) == 30);
+}
+
+void test_back_oneElementInVector() {
+    vector v = createVector(1);
+    pushBack(&v, 100);
+    pushBack(&v, 200);
+    pushBack(&v, 300);
+    assert(*back(&v) == 300);
+}
+
+void test_front_oneElementInVector() {
+    vector v = createVector(1);
+    pushBack(&v, 100);
+    pushBack(&v, 200);
+    assert(*front(&v) == 100);
+}

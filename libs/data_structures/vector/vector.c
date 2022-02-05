@@ -3,7 +3,10 @@
 #include "vector.h"
 #include "../../algorithms/array/array.h"
 
-void exitWithError(char message[]);
+void exitWithError(char message[]) {
+    fprintf(stderr, "%s", message);
+    exit(1);
+}
 
 void printVector(vector *vector) {
     outputArray_(vector->data, vector->capacity);
@@ -85,7 +88,19 @@ void popBack(vector *v) {
     v->size--;
 }
 
-void exitWithError(char message[]) {
-    fprintf(stderr, "%s", message);
-    exit(1);
+int *atVector(vector *v, size_t index) {
+    if (index > v->size - 1) {
+        fprintf(stderr, "IndexError: a[%zu]is not exists", index);
+        exit(1);
+    }
+    return &(v->data[index]);
 }
+
+int *back(vector *v) {
+    return atVector(v, v->size - 1);
+}
+
+int *front(vector *v) {
+    return atVector(v, 0);
+}
+
