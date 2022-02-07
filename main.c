@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "libs/data_structures/vector/vector.h"
 #include "tests/vectorTests.c"
+#include "libs/data_structures/vector/vectorVoid.h"
 
 void test();
 
@@ -11,6 +12,10 @@ int main() {
     scanf("%d", &capacity);
     vector vector = createVector(capacity);
     printVector(&vector);
+
+    char dataOfVectorVoid[] = {'1', '2', '3'};
+    vectorVoid vectorVoid = {dataOfVectorVoid, 3, 5, sizeof(char)};
+
     return 0;
 }
 
