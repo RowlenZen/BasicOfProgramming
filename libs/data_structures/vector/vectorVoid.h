@@ -1,8 +1,8 @@
 #ifndef BASICOFPROGRAMMING_VECTORVOID_H
 #define BASICOFPROGRAMMING_VECTORVOID_H
 
-# include <limits.h>
-#include <stddef.h>
+#include <limits.h>
+#include <stdbool.h>
 
 typedef struct vectorVoid {
     void *data;            // указатель на нулевой элемент вектора
@@ -29,5 +29,23 @@ void shrinkToFitV(vectorVoid *v);
 
 /**освобождает память, выделенную вектору*/
 void deleteVectorV(vectorVoid *v);
+
+/**является ли вектор пустым (отсутствуют "полезные" элементы)*/
+bool isEmptyV(vectorVoid *v);
+
+/**является ли вектор полным (используется вся доступная вместимость)*/
+bool isFullV(vectorVoid *v);
+
+/**возвращает i-ый элемент вектора v*/
+void getVectorValueV(vectorVoid *v, size_t i, void *destination);
+
+/**записывает на index-ый элемент вектора v значение, расположенное по адресу source*/
+void setVectorValueV(vectorVoid *v, size_t index, void *source);
+
+/**удаляет последний элемент из вектора*/
+void popBackV(vectorVoid *v);
+
+/**добавляет элемент x в конец вектора v*/
+void pushBackV(vectorVoid *v, void *source);
 
 #endif //BASICOFPROGRAMMING_VECTORVOID_H
