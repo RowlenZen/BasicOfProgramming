@@ -9,7 +9,8 @@ void exitWithError(char message[]) {
 }
 
 void printVector(vector *vector) {
-    outputArray_(vector->data, vector->capacity);
+    printf("Data: ");
+    outputArray_(vector->data, vector->size);
     printf("Size: %zu\n", vector->size);
     printf("Capacity: %zu\n", vector->capacity);
 }

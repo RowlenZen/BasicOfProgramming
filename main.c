@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdint.h>
 #include "libs/data_structures/vector/vector.h"
 #include "tests/vectorTests.c"
 
@@ -7,7 +6,10 @@ void test();
 
 int main() {
     test();
-    vector vector = createVector(5);
+    int capacity;
+    printf("Enter wish capacity of vector: ");
+    scanf("%d", &capacity);
+    vector vector = createVector(capacity);
     printVector(&vector);
     return 0;
 }
