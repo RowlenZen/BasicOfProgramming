@@ -11,14 +11,14 @@ void manualTest_pushBackV_getVectorValueV_emptyVectorVoid_BaseTypeFloat();
 
 int main() {
     test();
-//    int capacity;
-//    printf("Enter wish capacity of vector: ");
-//    scanf("%d", &capacity);
-//    vector vector = createVector(capacity);
-//    printVector(&vector);
+    int capacity;
+    printf("Enter wish capacity of vector: ");
+    scanf("%d", &capacity);
+    vector vector = createVector(capacity);
+    printVector(&vector);
 
-    manualTest_pushBackV_getVectorValueV_emptyVectorVoid_BaseTypeInt();
-    manualTest_pushBackV_getVectorValueV_emptyVectorVoid_BaseTypeFloat();
+//    manualTest_pushBackV_getVectorValueV_emptyVectorVoid_BaseTypeInt();
+//    manualTest_pushBackV_getVectorValueV_emptyVectorVoid_BaseTypeFloat();
 
     return 0;
 }
