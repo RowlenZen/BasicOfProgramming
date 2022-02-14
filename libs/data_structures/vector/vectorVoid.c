@@ -50,6 +50,7 @@ void shrinkToFitV(vectorVoid *v) {
 }
 
 void deleteVectorV(vectorVoid *v) {
+    free(v->data);
     free(v);
 }
 
