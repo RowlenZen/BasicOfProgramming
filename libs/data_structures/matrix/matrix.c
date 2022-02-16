@@ -247,3 +247,9 @@ matrix *createArrayOfMatrixFromArray(const int *ms, int nMatrices, int nRows, in
 
     return matrices;
 }
+
+void swapRowsWithMaxAndMinValues(matrix m) {
+    position max = getMaxValuePos(m);
+    position min = getMinValuePos(m);
+    swapRows(m, min.rowIndex, max.rowIndex);
+}

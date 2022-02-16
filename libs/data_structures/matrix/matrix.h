@@ -84,4 +84,8 @@ matrix createMatrixFromArray(const int *srcArray, int nRows, int nCols);
  * в динамической памяти, построенных из элементов массива a*/
 matrix *createArrayOfMatrixFromArray(const int *ms, int nMatrices, int nRows, int nCols);
 
+/**Поменять местами строки, в которых находятся максимальный и минимальный элементы.
+ * Все элементы матрицы m различны*/
+void swapRowsWithMaxAndMinValues(matrix m);
+
 #endif
