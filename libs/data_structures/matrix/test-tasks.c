@@ -72,8 +72,47 @@ void sortRowsByMaxElement_test(){
     freeMemMatrix(endMatrix);
 }
 
+int getMin(int *a, int n) {
+    int min = a[0];
+    for (int i = 0; i < n; i++) {
+        if (a[i] < min)
+            min = a[i];
+    }
+    return min;
+}
+
+/**Дана прямоугольная матрица. Упорядочить столбцы матрицы по неубыванию
+минимальных элементов столбцов*/
+void sortColsByMinElement_task(matrix m) {
+    insertionSortColsMatrixByColCriteria(m, getMin);
+}
+
+void sortColsByMinElement_test(){
+    matrix testMatrix = createMatrixFromArray(
+            (int[]) {
+                    0, 7, 14, 5,
+                    1, 56, 52,6,
+                    32, 4, 2,10
+            },
+            3, 4);
+
+    matrix endMatrix = createMatrixFromArray(
+            (int[]) {
+                    0, 14, 7,5,
+                    1, 52, 56,6,
+                    32, 2, 4,10
+            }, 3, 4
+    );
+
+    sortColsByMinElement_task(testMatrix);
+    assert(areTwoMatricesEqual(testMatrix, endMatrix));
+
+    freeMemMatrix(testMatrix);
+    freeMemMatrix(endMatrix);
+}
+
 void matrix_test() {
     swapRowsWithMaxAndMinValues_test();
     sortRowsByMaxElement_test();
-//    sortColsByMinElement_test();
+    sortColsByMinElement_test();
 }
