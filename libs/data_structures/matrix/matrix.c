@@ -253,3 +253,17 @@ void swapRowsWithMaxAndMinValues(matrix m) {
     position min = getMinValuePos(m);
     swapRows(m, min.rowIndex, max.rowIndex);
 }
+
+matrix multiplyMatrices(const matrix m1, const matrix m2) {
+    matrix res = getMemMatrix(m1.nRows, m2.nCols);
+
+    for (int i = 0; i < m1.nRows; ++i)
+        for (int j = 0; j < m2.nCols; ++j) {
+            res.values[i][j] = 0;
+            for (int k = 0; k < m2.nRows; ++k) {
+                res.values[i][j] += m1.values[i][k] * m2.values[k][j];
+            }
+        }
+
+    return res;
+}

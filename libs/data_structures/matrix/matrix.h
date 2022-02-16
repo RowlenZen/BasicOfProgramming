@@ -79,7 +79,6 @@ position getMaxValuePos(matrix m);
  * из элементов массива srcArray, размещенную в динамической памяти*/
 matrix createMatrixFromArray(const int *srcArray, int nRows, int nCols);
 
-
 /**возвращает указатель на нулевую матрицу массива из nMatrices матриц, размещенных
  * в динамической памяти, построенных из элементов массива a*/
 matrix *createArrayOfMatrixFromArray(const int *ms, int nMatrices, int nRows, int nCols);
@@ -87,5 +86,8 @@ matrix *createArrayOfMatrixFromArray(const int *ms, int nMatrices, int nRows, in
 /**Поменять местами строки, в которых находятся максимальный и минимальный элементы.
  * Все элементы матрицы m различны*/
 void swapRowsWithMaxAndMinValues(matrix m);
+
+/**произведение двух матриц*/
+matrix multiplyMatrices(matrix m1, matrix m2);
 
 #endif

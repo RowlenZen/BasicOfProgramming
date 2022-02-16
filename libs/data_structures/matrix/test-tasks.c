@@ -111,8 +111,42 @@ void sortColsByMinElement_test(){
     freeMemMatrix(endMatrix);
 }
 
+/**Если данная квадратная матрица 𝐴 симметрична, то заменить 𝐴 ее квадратом*/
+void getSquareOfMatrixIfSymmetric_task(matrix *m) {
+    if (!isSymmetricMatrix(*m))
+        return;
+
+    *m = multiplyMatrices(*m, *m);
+}
+
+void getSquareOfMatrixIfSymmetric_test() {
+    matrix testMatrix = createMatrixFromArray(
+            (int[]) {
+                    0, 1, 2,
+                    1, 4, 3,
+                    2, 3, 4
+            }, 3, 3
+    );
+
+    matrix endMatrix = createMatrixFromArray(
+            (int[]) {
+                    5, 10, 11,
+                    10, 26, 26,
+                    11, 26, 29
+            }, 3, 3
+    );
+
+    getSquareOfMatrixIfSymmetric_task(&testMatrix);
+
+    assert(areTwoMatricesEqual(testMatrix, endMatrix));
+
+    freeMemMatrix(testMatrix);
+    freeMemMatrix(endMatrix);
+}
+
 void matrix_test() {
     swapRowsWithMaxAndMinValues_test();
     sortRowsByMaxElement_test();
     sortColsByMinElement_test();
+    getSquareOfMatrixIfSymmetric_test();
 }
