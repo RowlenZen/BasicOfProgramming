@@ -1,5 +1,5 @@
-
 #include <assert.h>
+#include <malloc.h>
 #include "matrix.h"
 
 void matrix_test();
@@ -16,8 +16,7 @@ void swapRowsWithMaxAndMinValues_test() {
                     0, 7, 14,
                     1, 56, 52,
                     32, 4, 2
-            },
-            3, 3);
+            }, 3, 3);
 
     matrix endMatrix = createMatrixFromArray(
             (int[]) {
@@ -48,14 +47,13 @@ void sortRowsByMaxElement_task(matrix m) {
     insertionSortRowsMatrixByRowCriteria(m, getMax);
 }
 
-void sortRowsByMaxElement_test(){
+void sortRowsByMaxElement_test() {
     matrix testMatrix = createMatrixFromArray(
             (int[]) {
                     0, 7, 14,
                     1, 56, 52,
                     32, 4, 2
-            },
-            3, 3);
+            }, 3, 3);
 
     matrix endMatrix = createMatrixFromArray(
             (int[]) {
@@ -87,20 +85,19 @@ void sortColsByMinElement_task(matrix m) {
     insertionSortColsMatrixByColCriteria(m, getMin);
 }
 
-void sortColsByMinElement_test(){
+void sortColsByMinElement_test() {
     matrix testMatrix = createMatrixFromArray(
             (int[]) {
                     0, 7, 14, 5,
-                    1, 56, 52,6,
-                    32, 4, 2,10
-            },
-            3, 4);
+                    1, 56, 52, 6,
+                    32, 4, 2, 10
+            }, 3, 4);
 
     matrix endMatrix = createMatrixFromArray(
             (int[]) {
-                    0, 14, 7,5,
-                    1, 52, 56,6,
-                    32, 2, 4,10
+                    0, 14, 7, 5,
+                    1, 52, 56, 6,
+                    32, 2, 4, 10
             }, 3, 4
     );
 
@@ -144,9 +141,66 @@ void getSquareOfMatrixIfSymmetric_test() {
     freeMemMatrix(endMatrix);
 }
 
+long long getSum(int *row, int nCols) {
+    long long sum = 0;
+    for (int i = 0; i < nCols; ++i) {
+        sum += row[i];
+    }
+    return sum;
+}
+
+bool isUniqueArray(long long *a, int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (a[i] == a[j])
+                return false;
+        }
+    }
+    return true;
+}
+
+void transposeIfMatrixHasNotEqualSumOfRows(matrix m) {
+    long long *sum = malloc(sizeof(long long) * m.nRows);
+
+    for (int i = 0; i < m.nRows; ++i) {
+        sum[i] = getSum(m.values[i], m.nCols);
+    }
+
+    if (!isUniqueArray(sum, m.nRows))
+        return;
+
+    transposeSquareMatrix(m);
+}
+
+void transposeIfMatrixHasNotEqualSumOfRows_test() {
+    matrix testMatrix = createMatrixFromArray(
+            (int[]) {
+                    0, 7, 14,
+                    1, 56, 52,
+                    32, 4, 2
+            }, 3, 3
+    );
+
+    matrix endMatrix = createMatrixFromArray(
+            (int[]) {
+                    0, 1, 32,
+                    7, 56, 4,
+                    14, 52, 2
+
+            }, 3, 3
+    );
+
+    transposeIfMatrixHasNotEqualSumOfRows(testMatrix);
+    assert(areTwoMatricesEqual(testMatrix, endMatrix));
+
+    freeMemMatrix(testMatrix);
+    freeMemMatrix(endMatrix);
+}
+
 void matrix_test() {
     swapRowsWithMaxAndMinValues_test();
     sortRowsByMaxElement_test();
     sortColsByMinElement_test();
     getSquareOfMatrixIfSymmetric_test();
+    transposeIfMatrixHasNotEqualSumOfRows_test();
 }
