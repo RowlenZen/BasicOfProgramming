@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "libs/data_structures/vector/vector.h"
+#include "libs/data_structures/matrix/test-tasks.c"
 #include "tests/vectorTests.c"
 #include "libs/data_structures/vector/vectorVoid.h"
 
@@ -11,12 +12,7 @@ void manualTest_pushBackV_getVectorValueV_emptyVectorVoid_BaseTypeFloat();
 
 int main() {
     test();
-    int capacity;
-    printf("Enter wish capacity of vector: ");
-    scanf("%d", &capacity);
-    vector vector = createVector(capacity);
-    printVector(&vector);
-
+    matrix_test();
 //    manualTest_pushBackV_getVectorValueV_emptyVectorVoid_BaseTypeInt();
 //    manualTest_pushBackV_getVectorValueV_emptyVectorVoid_BaseTypeFloat();
 
