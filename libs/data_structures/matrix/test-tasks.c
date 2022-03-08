@@ -6,11 +6,11 @@ void matrix_test();
 
 /**Дана квадратная матрица, все элементы которой различны. Поменять местами
  * строки, в которых находятся максимальный и минимальный элементы*/
-void swapRowsWithMaxAndMinValues_task(matrix m) {
+void task_swapRowsWithMaxAndMinValues(matrix m) {
     swapRowsWithMaxAndMinValues(m);
 }
 
-void swapRowsWithMaxAndMinValues_test() {
+void test_swapRowsWithMaxAndMinValues() {
     matrix testMatrix = createMatrixFromArray(
             (int[]) {
                     0, 7, 14,
@@ -26,7 +26,7 @@ void swapRowsWithMaxAndMinValues_test() {
             }, 3, 3
     );
 
-    swapRowsWithMaxAndMinValues_task(testMatrix);
+    task_swapRowsWithMaxAndMinValues(testMatrix);
     assert(areTwoMatricesEqual(testMatrix, endMatrix));
 
     freeMemMatrix(testMatrix);
@@ -43,11 +43,11 @@ int getMax(int *a, int n) {
 }
 
 /**Упорядочить строки матрицы по неубыванию наибольших элементов строк*/
-void sortRowsByMaxElement_task(matrix m) {
+void task_sortRowsByMaxElement(matrix m) {
     insertionSortRowsMatrixByRowCriteria(m, getMax);
 }
 
-void sortRowsByMaxElement_test() {
+void test_sortRowsByMaxElement() {
     matrix testMatrix = createMatrixFromArray(
             (int[]) {
                     0, 7, 14,
@@ -63,7 +63,7 @@ void sortRowsByMaxElement_test() {
             }, 3, 3
     );
 
-    sortRowsByMaxElement_task(testMatrix);
+    task_sortRowsByMaxElement(testMatrix);
     assert(areTwoMatricesEqual(testMatrix, endMatrix));
 
     freeMemMatrix(testMatrix);
@@ -81,11 +81,11 @@ int getMin(int *a, int n) {
 
 /**Дана прямоугольная матрица. Упорядочить столбцы матрицы по неубыванию
 минимальных элементов столбцов*/
-void sortColsByMinElement_task(matrix m) {
+void task_sortColsByMinElement(matrix m) {
     insertionSortColsMatrixByColCriteria(m, getMin);
 }
 
-void sortColsByMinElement_test() {
+void test_sortColsByMinElement() {
     matrix testMatrix = createMatrixFromArray(
             (int[]) {
                     0, 7, 14, 5,
@@ -101,7 +101,7 @@ void sortColsByMinElement_test() {
             }, 3, 4
     );
 
-    sortColsByMinElement_task(testMatrix);
+    task_sortColsByMinElement(testMatrix);
     assert(areTwoMatricesEqual(testMatrix, endMatrix));
 
     freeMemMatrix(testMatrix);
@@ -109,14 +109,14 @@ void sortColsByMinElement_test() {
 }
 
 /**Если данная квадратная матрица 𝐴 симметрична, то заменить 𝐴 ее квадратом*/
-void getSquareOfMatrixIfSymmetric_task(matrix *m) {
+void task_getSquareOfMatrixIfSymmetric(matrix *m) {
     if (!isSymmetricMatrix(*m))
         return;
 
     *m = multiplyMatrices(*m, *m);
 }
 
-void getSquareOfMatrixIfSymmetric_test() {
+void test_getSquareOfMatrixIfSymmetric() {
     matrix testMatrix = createMatrixFromArray(
             (int[]) {
                     0, 1, 2,
@@ -133,7 +133,7 @@ void getSquareOfMatrixIfSymmetric_test() {
             }, 3, 3
     );
 
-    getSquareOfMatrixIfSymmetric_task(&testMatrix);
+    task_getSquareOfMatrixIfSymmetric(&testMatrix);
 
     assert(areTwoMatricesEqual(testMatrix, endMatrix));
 
@@ -159,7 +159,7 @@ bool isUniqueArray(long long *a, int n) {
     return true;
 }
 
-void transposeIfMatrixHasNotEqualSumOfRows(matrix m) {
+void task_transposeIfMatrixHasNotEqualSumOfRows(matrix m) {
     long long *sum = malloc(sizeof(long long) * m.nRows);
 
     for (int i = 0; i < m.nRows; ++i) {
@@ -172,7 +172,7 @@ void transposeIfMatrixHasNotEqualSumOfRows(matrix m) {
     transposeSquareMatrix(m);
 }
 
-void transposeIfMatrixHasNotEqualSumOfRows_test() {
+void test_transposeIfMatrixHasNotEqualSumOfRows() {
     matrix testMatrix = createMatrixFromArray(
             (int[]) {
                     0, 7, 14,
@@ -190,7 +190,7 @@ void transposeIfMatrixHasNotEqualSumOfRows_test() {
             }, 3, 3
     );
 
-    transposeIfMatrixHasNotEqualSumOfRows(testMatrix);
+    task_transposeIfMatrixHasNotEqualSumOfRows(testMatrix);
     assert(areTwoMatricesEqual(testMatrix, endMatrix));
 
     freeMemMatrix(testMatrix);
@@ -198,9 +198,9 @@ void transposeIfMatrixHasNotEqualSumOfRows_test() {
 }
 
 void matrix_test() {
-    swapRowsWithMaxAndMinValues_test();
-    sortRowsByMaxElement_test();
-    sortColsByMinElement_test();
-    getSquareOfMatrixIfSymmetric_test();
-    transposeIfMatrixHasNotEqualSumOfRows_test();
+    test_swapRowsWithMaxAndMinValues();
+    test_sortRowsByMaxElement();
+    test_sortColsByMinElement();
+    test_getSquareOfMatrixIfSymmetric();
+    test_transposeIfMatrixHasNotEqualSumOfRows();
 }
