@@ -1,6 +1,8 @@
 #include <ctype.h>
 #include "../string_.h"
 
+//Преобразовать строку, оставляя только один символ в каж-
+//дой последовательности подряд идущих одинаковых символов
 void removeAdjacentEqualLetters(char *s) {
     if (*s == '\0')
         return;
@@ -32,6 +34,10 @@ void digitToEnd(WordDescriptor word) {
                   isdigit);
 }
 
+//преобразовать строку таким образом, чтобы цифры
+//каждого слова были перенесены в начало слова и изменить порядок следования
+//цифр в слове на обратный, а буквы – в конец слова, без изменения порядка
+//следования
 void digitToEndRevers(char *str) {
 
     char *beginStr = str;
@@ -43,6 +49,7 @@ void digitToEndRevers(char *str) {
     }
 }
 
+//Преобразовать строку, заменяя каждую цифру соответствующим ей числом пробелов.
 void replaceEachDigitBySpaces(char *s) {
 
     char *strBufferEnd = copy(s, s + strlength_(s), _stringBuffer);
