@@ -63,7 +63,7 @@ int strcmp_(const char *lhs, const char *rhs) {
 
 char *copy(const char *beginSource, const char *endSource, char *beginDestination) {
 
-    unsigned int countBytes = *endSource - *beginSource;
+    unsigned int countBytes = endSource - beginSource;
     memcpy(beginDestination, beginSource, countBytes);
 
     return beginDestination + countBytes;
@@ -96,3 +96,25 @@ char *copyIfReverse(char *rbeginSource, const char *rendSource, char *beginDesti
     return beginDestination;
 }
 
+int getWord(char *beginSearch, WordDescriptor *word) {
+
+    word->begin = findNonSpace(beginSearch);
+    if (*word->begin == '\0')
+        return 0;
+
+    word->end = findSpace(word->begin);
+
+    return 1;
+}
+
+int getWordReverse(char *rbegin, char *rend, WordDescriptor *word) {
+
+    word->end = findNonSpaceReverse(rbegin, rend);
+    if (word->end == rend)
+        return 0;
+
+    word->begin = findSpaceReverse(word->end, rend);
+    word->begin++;
+    word->end++;
+    return 1;
+}

@@ -3,6 +3,7 @@
 #include "libs/data_structures/matrix/test-tasks.c"
 #include "tests/vectorTests.c"
 #include "libs/data_structures/vector/vectorVoid.h"
+#include "libs/data_structures/string/tasks/task-tests.c"
 
 void test();
 
@@ -11,8 +12,10 @@ void manualTest_pushBackV_getVectorValueV_emptyVectorVoid_BaseTypeInt();
 void manualTest_pushBackV_getVectorValueV_emptyVectorVoid_BaseTypeFloat();
 
 int main() {
-    test();
-    matrix_test();
+//    test();
+//    matrix_test();
+
+    test_string_tasks();
 //    manualTest_pushBackV_getVectorValueV_emptyVectorVoid_BaseTypeInt();
 //    manualTest_pushBackV_getVectorValueV_emptyVectorVoid_BaseTypeFloat();
 
